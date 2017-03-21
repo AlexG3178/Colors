@@ -1,6 +1,5 @@
 package com.example.test.colors;
 
-
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -8,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,9 +46,12 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
     @Override
     public void onBindViewHolder(final ColorViewHolder holder, final int position) {
 
+        final int ITEM_UNPRESSED = (int) holder.tvColor.getContext().getResources().getDimension(R.dimen.layout_height_unpressed);
+        final int ITEM_PRESSED = (int) holder.tvColor.getContext().getResources().getDimension(R.dimen.layout_height_pressed);
+
+        holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_UNPRESSED));
         holder.tvColor.setText(colors.get(position).name);
         holder.tvColor.setTextColor(Color.parseColor(colors.get(position).color));
-        holder.tvColor.setHeight(150);
 
         holder.cvColor.setOnClickListener(new View.OnClickListener() {
             boolean pressed;
@@ -56,14 +59,14 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
             @Override
             public void onClick(View v) {
                 if (!pressed) {
-                    holder.tvColor.setHeight(700);
+                    holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_PRESSED));
                     holder.cvColor.setCardBackgroundColor(Color.parseColor(colors.get(position).color));
                     holder.tvColor.setTextColor(ContextCompat.getColor(v.getContext(), R.color.gray));
                     pressed = true;
                 } else {
-                    holder.tvColor.setHeight(150);
-                    holder.tvColor.setTextColor(Color.parseColor(colors.get(position).color));
+                    holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_UNPRESSED));
                     holder.cvColor.setCardBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.gray));
+                    holder.tvColor.setTextColor(Color.parseColor(colors.get(position).color));
                     pressed = false;
                 }
 

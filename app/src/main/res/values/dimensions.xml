@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="layout_height_unpressed">100dp</dimen>
+
+    <dimen name="layout_height_pressed">400dp</dimen>
+
+</resources>
