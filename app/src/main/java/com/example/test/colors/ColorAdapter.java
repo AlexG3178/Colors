@@ -27,7 +27,6 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
     }
 
     private ArrayList<CustomColor> colors;
-
     ColorAdapter(ArrayList<CustomColor> colors) {
         this.colors = colors;
     }
@@ -46,10 +45,10 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
     @Override
     public void onBindViewHolder(final ColorViewHolder holder, final int position) {
 
-        final int ITEM_UNPRESSED = (int) holder.tvColor.getContext().getResources().getDimension(R.dimen.layout_height_unpressed);
-        final int ITEM_PRESSED = (int) holder.tvColor.getContext().getResources().getDimension(R.dimen.layout_height_pressed);
+        final int ITEM_NOT_PRESSED_HEIHGT = (int) holder.tvColor.getContext().getResources().getDimension(R.dimen.layout_height_unpressed);
+        final int ITEM_PRESSED_HEIHGT = (int) holder.tvColor.getContext().getResources().getDimension(R.dimen.layout_height_pressed);
 
-        holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_UNPRESSED));
+        holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_NOT_PRESSED_HEIHGT));
         holder.tvColor.setText(colors.get(position).name);
         holder.tvColor.setTextColor(Color.parseColor(colors.get(position).color));
 
@@ -59,12 +58,12 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
             @Override
             public void onClick(View v) {
                 if (!pressed) {
-                    holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_PRESSED));
+                    holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_PRESSED_HEIHGT));
                     holder.cvColor.setCardBackgroundColor(Color.parseColor(colors.get(position).color));
                     holder.tvColor.setTextColor(ContextCompat.getColor(v.getContext(), R.color.gray));
                     pressed = true;
                 } else {
-                    holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_UNPRESSED));
+                    holder.cvColor.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ITEM_NOT_PRESSED_HEIHGT));
                     holder.cvColor.setCardBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.gray));
                     holder.tvColor.setTextColor(Color.parseColor(colors.get(position).color));
                     pressed = false;
