@@ -1,10 +1,10 @@
 package com.example.test.colors;
 
-class ColorClass {
+class CustomColor {
     String name;
     String color;
 
-    ColorClass(String name, String color){
+    CustomColor(String name, String color){
         this.name = name;
         this.color = color;
     }

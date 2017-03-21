@@ -26,9 +26,9 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
         }
     }
 
-    private ArrayList<ColorClass> colors;
+    private ArrayList<CustomColor> colors;
 
-    ColorAdapter(ArrayList<ColorClass> colors) {
+    ColorAdapter(ArrayList<CustomColor> colors) {
         this.colors = colors;
     }
 
@@ -51,20 +51,20 @@ class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHolder> {
         holder.tvColor.setHeight(150);
 
         holder.cvColor.setOnClickListener(new View.OnClickListener() {
-            boolean checked;
+            boolean pressed;
 
             @Override
             public void onClick(View v) {
-                if (!checked) {
+                if (!pressed) {
                     holder.tvColor.setHeight(700);
                     holder.cvColor.setCardBackgroundColor(Color.parseColor(colors.get(position).color));
                     holder.tvColor.setTextColor(ContextCompat.getColor(v.getContext(), R.color.gray));
-                    checked = true;
+                    pressed = true;
                 } else {
                     holder.tvColor.setHeight(150);
                     holder.tvColor.setTextColor(Color.parseColor(colors.get(position).color));
                     holder.cvColor.setCardBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.gray));
-                    checked = false;
+                    pressed = false;
                 }
 
             }
